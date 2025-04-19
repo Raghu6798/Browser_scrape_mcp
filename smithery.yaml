@@ -1,17 +1,24 @@
-# smithery.yml – Smithery.ai configuration for a Python-based MCP
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
 
 startCommand:
   type: stdio
-  configSchema: {}  # Define JSON schema here if needed, otherwise leave empty
-
-commandFunction: |-
-  (config) => ({
-    command: "python",
-    args: [
-      "main.py"
-    ],
-    env: {
-      "MISTRAL_API_KEY": process.env.MISTRAL_API_KEY || "",
-      "PYTHONUNBUFFERED": "1"
-    }
-  })
+  configSchema:
+    type: object
+    required:
+      - MISTRAL_API_KEY
+    properties:
+      MISTRAL_API_KEY:
+        type: string
+        description: API key for Mistral AI
+  commandFunction: |
+    (config) => ({
+      command: 'python',
+      args: ['main.py'],
+      env: {
+        MISTRAL_API_KEY: config.MISTRAL_API_KEY
+      }
+    })
