@@ -8,7 +8,7 @@ commandFunction: |-
   (config) => ({
     command: "python",
     args: [
-      "C:/Users/Raghu/Downloads/158_bit_quant/browsing-mcp/main.py"
+      "main.py"
     ],
     env: {
       "MISTRAL_API_KEY": process.env.MISTRAL_API_KEY || "",
