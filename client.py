@@ -26,34 +26,29 @@ server_params = StdioServerParameters(
 
 async def run_agent():
     try:
+        # Connect to the server
         async with stdio_client(server_params) as (read, write):
             async with ClientSession(read, write) as session:
                 await session.initialize()
                 print("Client session initialized successfully.")
 
-
+                # Load tools from the server
                 tools = await load_mcp_tools(session)
                 print("Tools loaded successfully.")
 
+                # Create the agent
                 agent = create_react_agent(model, tools)
 
+                # Main loop for user interaction
                 while True:
                     query = input("Enter the query (or type 'exit' to quit): ")
                     if query.lower() == 'exit':
                         print("Exiting...")
                         break
 
-        
+                    # Invoke the agent with the user's query
                     agent_response = await agent.ainvoke({"messages": query})
-
-                    
-                    messages = agent_response.get("messages", [])
-                    if len(messages) > 3:
-                        print("Agent response:", messages[3].content)
-                    elif messages:
-                        print("Agent response (fallback):", messages[-1].content)
-                    else:
-                        print("Agent returned no messages.")
+                    print("Agent response:", agent_response["messages"][3].content)
     except Exception as e:
         print(f"Error during client execution: {e}")
         raise
@@ -61,4 +56,6 @@ async def run_agent():
         print("Client execution complete.")
 
 if __name__ == "__main__":
+    # Run the agent in an asyncio event loop
     asyncio.run(run_agent())
+    
