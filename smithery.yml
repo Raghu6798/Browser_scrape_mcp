@@ -6,7 +6,7 @@ startCommand:
 
 commandFunction: |-
   (config) => ({
-    command: "python",
+    command: "uv",
     args: [
       "C:/Users/Raghu/Downloads/158_bit_quant/browsing-mcp/main.py"
     ],
