@@ -1,0 +1,15 @@
+[project]
+name = "browsing-mcp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "googlesearch-python>=1.3.0",
+    "langchain-mcp-adapters>=0.0.9",
+    "langchain-openai>=0.3.14",
+    "playwright-stealth>=1.0.6",
+    "playwright>=1.51.0",
+    "python-dotenv>=1.1.0",
+    "setuptools>=78.1.0",
+]
