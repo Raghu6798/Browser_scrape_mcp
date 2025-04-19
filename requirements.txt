@@ -1,0 +1,7 @@
+playwright
+playwright-stealth
+langchain_mistralai
+python-dotenv
+mcp
+langchain-mcp-adapters
+asyncio
