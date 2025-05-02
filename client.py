@@ -21,7 +21,7 @@ model = ChatMistralAI(
 # Define server parameters
 server_params = StdioServerParameters(
     command="python",
-    args=["C:\\Users\\Raghu\\Downloads\\ProofOfConcept\\customcopilot\\main.py"],  # Path to your server script
+    args=["main.py"],  # Path to your server script
 )
 
 async def run_agent():
